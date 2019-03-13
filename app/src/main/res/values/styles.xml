@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Theme.AppTheme.Light.NoActionBar" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Relax" parent="Theme.AppTheme.Light.NoActionBar" >
+        <item name="android:colorAccent">@color/accent_material_light</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+        <item name="android:navigationBarColor">@android:color/darker_gray</item>
+        <item name="android:statusBarColor">@android:color/darker_gray</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark_material_light</item>
+    </style>
+
+</resources>
