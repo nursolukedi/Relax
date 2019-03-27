@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:119979702597:android:a1cc90be2cf34851",
+        "mobilesdk_app_id": "1:119979702597:android:aefa84916fb33e42",
         "android_client_info": {
-          "package_name": "com.relax.birdie.birdierelax"
+          "package_name": "com.relax.birdie.relax"
         }
       },
       "oauth_client": [
@@ -31,50 +31,6 @@
         "appinvite_service": {
           "status": 1,
           "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:119979702597:android:aefa84916fb33e42",
-        "android_client_info": {
-          "package_name": "com.relax.birdie.relax"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "119979702597-38297bjtcg6pd159tu7n5ondqhgtr4h9.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.relax.birdie.relax",
-            "certificate_hash": "41f8ef95ad87764126ca14aa185262b10a77d22f"
-          }
-        },
-        {
-          "client_id": "119979702597-joqj3mvp1fmuj91dtv993654q4ho2pcl.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBY2jI_0em1Zx_vtQW4BH67TPRvoq1tdU4"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "119979702597-joqj3mvp1fmuj91dtv993654q4ho2pcl.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
         },
         "ads_service": {
           "status": 2
