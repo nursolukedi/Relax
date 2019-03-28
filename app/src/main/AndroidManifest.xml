@@ -22,7 +22,18 @@
             android:name=".LoginActivity"
             android:theme="@style/Relax" />
         <activity android:name=".Dashboard" />
-        <activity android:name=".HowStressed"></activity>
+        <activity android:name=".HowStressed" />
+        <activity android:name=".progress" />
+        <activity android:name=".meditations" />
+        <activity android:name=".settings" />
+        <activity android:name=".Calendar" />
+        <activity android:name=".Personal" />
+        <activity android:name=".MeditationInfo" />
+        <activity android:name=".MeditationListInfo" />
+        <activity android:name=".AddCalendarEvent" />
+        <activity android:name=".HeartrateShowing" />
+        <activity android:name=".StressShowing" />
+        <activity android:name=".MeditationDoing"></activity>
     </application>
 
 </manifest>
