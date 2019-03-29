@@ -23,6 +23,7 @@ public class Dashboard extends AppCompatActivity {
     private ImageButton personal;
     private ImageButton calendar;
 
+    private Button signOut;
     private ImageView calendarImage;
     private ImageView personalImage;
     private ImageView settingsImage;
@@ -51,6 +52,8 @@ public class Dashboard extends AppCompatActivity {
         progressImage = findViewById(R.id.progressTV);
         calendarImage = findViewById(R.id.calendarTV);
 
+        signOut = findViewById(R.id.signOut);
+
         // Listen all of the buttons
         howStressed.setOnClickListener(this);
         meditations.setOnClickListener(this);
@@ -58,19 +61,37 @@ public class Dashboard extends AppCompatActivity {
         progress.setOnClickListener(this);
         calendar.setOnClickListener(this);
         personal.setOnClickListener(this);
+        signOut.setOnClickListener(this);
     }
     public void onClick(View v) {
-       /* if (v == signOut) { // Sign out
-          //  firebaseAuth.signOut();
+       if (v == signOut) { // Sign out
+        //   firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        else*/if (v == howStressed) { // How stressed test activity
+        else if (v == howStressed) { // How stressed test activity
             finish();
             startActivity(new Intent(this, HowStressed.class));
         }
-        else if(v == calendar || v == personal || v == progress || v == meditations) { // Activities which are not implemented yet
-            Toast.makeText(this, "Not implemented yet.", Toast.LENGTH_SHORT).show();
+        else if (v == meditations) { // How stressed test activity
+            finish();
+            startActivity(new Intent(this, Meditations.class));
         }
+        else if (v == settings) { // How stressed test activity
+            finish();
+            startActivity(new Intent(this, Settings.class));
+        }
+        else if (v == progress) { // How stressed test activity
+            finish();
+            startActivity(new Intent(this, Progress.class));
+        }
+       else if (v == calendar) { // How stressed test activity
+           finish();
+           startActivity(new Intent(this, Calendar.class));
+       }
+       else if (v == personal) { // How stressed test activity
+           finish();
+           startActivity(new Intent(this, Personal.class));
+       }
     }
 }
