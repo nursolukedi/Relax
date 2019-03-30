@@ -33,7 +33,8 @@
         <activity android:name=".AddCalendarEvent" />
         <activity android:name=".HeartrateShowing" />
         <activity android:name=".StressShowing" />
-        <activity android:name=".MeditationDoing"></activity>
+        <activity android:name=".MeditationDoing" />
+        <activity android:name=".SignUp"></activity>
     </application>
 
 </manifest>
