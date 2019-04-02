@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 //import com.google.firebase.auth.FirebaseAuth;
 
-public class Dashboard extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity implements View.OnClickListener {
 
 
     // Variables - Layout elements of profile activity
