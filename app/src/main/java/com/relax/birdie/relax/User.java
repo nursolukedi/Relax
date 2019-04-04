@@ -20,7 +20,7 @@ public class User {
     private static final double fitnessLevelDiscountFactor = 0.1;
 
     // Stress threshold for heart rate percentile
-    private static final double stressThreshold = 0.6;
+    private static final double stressThreshold = 0.7;
 
     // Parameters
     private String name;
