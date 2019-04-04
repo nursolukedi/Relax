@@ -17,10 +17,10 @@ public class User {
     private static final int defaultFitnessLevel = 3;
 
     // Discount factor for heart rate by fitness level
-    private static final double fitnessLevelDiscountFactor = 0.2;
+    private static final double fitnessLevelDiscountFactor = 0.1;
 
     // Stress threshold for heart rate percentile
-    private static final double stressThreshold = 0.7;
+    private static final double stressThreshold = 0.6;
 
     // Parameters
     private String name;
@@ -137,7 +137,7 @@ public class User {
         maxHeartRate = (int)(maxHeartRate - (ageTemp * adjustmentFactor));
 
         // Calculate heart rate percentile. Return true if percentile is above threshold.
-        double heartRatePercentile = heartRate / maxHeartRate;
+        double heartRatePercentile = (double) heartRate / maxHeartRate;
         return heartRatePercentile > stressThreshold;
     }
 
