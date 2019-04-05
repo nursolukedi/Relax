@@ -1,5 +1,6 @@
 package com.relax.birdie.relax;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -8,6 +9,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.bluetooth.BluetoothAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.internal.Objects;
@@ -18,12 +20,21 @@ import java.util.List;
 public class RecieveHeartbeat extends AppCompatActivity {
     private static final int DISCOVER_DURATION = 300;
     private static final int REQUEST_BLU = 1;
-
+    private ProgressDialog progressDialog;
+    private TextView heartBeat ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recieve_heartbeat);
+
+        progressDialog = new ProgressDialog(this);
+        heartBeat = findViewById(R.id.heartBeat);
+
+
+        // If validations are OK, it will first show a progress bar
+        progressDialog.setMessage("Receiveing your heartbeat in...");
+        progressDialog.show();
 
     }
     public void sendViaBluetooth(){
@@ -67,7 +78,8 @@ public class RecieveHeartbeat extends AppCompatActivity {
                     if(packageName.equals("com.relax.birdie.relax")){
                         className = info.activityInfo.packageName;
                         found = true;
-                        break ;}
+                        break ; // pass to heartrate showing page
+                    }
                 }
                 if(!found)
                 {

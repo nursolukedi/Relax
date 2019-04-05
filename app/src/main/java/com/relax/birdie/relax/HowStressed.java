@@ -1,5 +1,6 @@
 package com.relax.birdie.relax;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,6 @@ import java.util.Random;
 
 public class HowStressed extends AppCompatActivity implements View.OnClickListener {
     private Button checkButton;
-    private SeekBar seekBar;
     private Button happy;
     private Button calm;
     private Button stressed;
@@ -29,13 +29,36 @@ public class HowStressed extends AppCompatActivity implements View.OnClickListen
         stressed = findViewById(R.id.checkButton);
         sad = findViewById(R.id.checkButton);
 
-        seekBar = findViewById(R.id.seekBar);
-        checkButton.setOnClickListener(this);
         mockUser = new User("email", "name", "surname", 30, 1, 3);
         heartRate = getHeartRate();
 
+        checkButton.setOnClickListener(this);
+        happy.setOnClickListener(this);
+        calm.setOnClickListener(this);
+        stressed.setOnClickListener(this);
+        sad.setOnClickListener(this);
+
+
     }
 
+    public void onClick(View v) {
+        if (v == stressed) { // Check whether the user is stressed
+            Random rand = new Random();
+            int adjustment = (int)(rand.nextGaussian()*5);
+            int newHeartRate = heartRate + adjustment;
+            if (mockUser.isStressed(newHeartRate)) {
+                Toast.makeText(this, "You seem like you are stressed. What about meditation?", Toast.LENGTH_LONG).show();
+                finish();
+                startActivity(new Intent(this, Meditations.class));
+            }
+        }
+        else if (v == happy || v == calm || v == sad) { // How stressed test activity
+            finish();
+            startActivity(new Intent(this, RecieveHeartbeat.class));
+        }
+    }
+
+    /**
     @Override
     public void onClick(View v) {
         if(v == checkButton) {
@@ -51,7 +74,7 @@ public class HowStressed extends AppCompatActivity implements View.OnClickListen
         }
 
     }
-    /**
+
      * Get current heart rate. Substituted with a random number generator.
      * @return Current heart rate
      */
