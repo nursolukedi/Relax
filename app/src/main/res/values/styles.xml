@@ -11,11 +11,13 @@
     <style name="Theme.AppTheme.Light.NoActionBar" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="Relax" parent="Theme.AppTheme.Light.NoActionBar" >
-        <item name="android:colorAccent">@color/accent_material_light</item>
+        <item name="android:colorAccent">@color/Relax</item>
         <item name="android:colorForeground">@color/foreground_material_light</item>
         <item name="android:navigationBarColor">@android:color/darker_gray</item>
         <item name="android:statusBarColor">?android:attr/colorPrimaryDark</item>
         <item name="android:colorPrimaryDark">@color/primary_dark_material_light</item>
+        <item name="android:colorBackground">@color/common_google_signin_btn_text_dark_default</item>
+        <item name="android:colorPrimary">@color/Relax</item>
     </style>
 
 </resources>

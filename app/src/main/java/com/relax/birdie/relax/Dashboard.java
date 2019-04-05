@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Dashboard extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,7 +33,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private ImageView howStressedImage;
     private ImageView meditationsImage;
     // Variable - Other variables
-  //  private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
     private int heartRate;
     private User mockUser;
 
@@ -97,21 +97,8 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
             finish();
             startActivity(new Intent(this, Meditations.class));
         }
-        else if (v == settings) { // How stressed test activity
-            finish();
-            startActivity(new Intent(this, Settings.class));
-        }
-        else if (v == progress) { // How stressed test activity
-            finish();
-            startActivity(new Intent(this, Progress.class));
-        }
-       else if (v == calendar) { // How stressed test activity
-           finish();
-           startActivity(new Intent(this, Calendar.class));
-       }
-       else if (v == personal) { // How stressed test activity
-           finish();
-           startActivity(new Intent(this, Personal.class));
+        else if (v == settings || v == progress || v == calendar || v == personal ) {
+           Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
        }
     }
 

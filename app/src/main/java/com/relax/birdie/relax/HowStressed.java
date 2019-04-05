@@ -12,6 +12,10 @@ import java.util.Random;
 public class HowStressed extends AppCompatActivity implements View.OnClickListener {
     private Button checkButton;
     private SeekBar seekBar;
+    private Button happy;
+    private Button calm;
+    private Button stressed;
+    private Button sad;
     private int heartRate;
     private User mockUser;
 
@@ -20,6 +24,11 @@ public class HowStressed extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_stressed);
         checkButton = findViewById(R.id.checkButton);
+        happy = findViewById(R.id.checkButton);
+        calm = findViewById(R.id.checkButton);
+        stressed = findViewById(R.id.checkButton);
+        sad = findViewById(R.id.checkButton);
+
         seekBar = findViewById(R.id.seekBar);
         checkButton.setOnClickListener(this);
         mockUser = new User("email", "name", "surname", 30, 1, 3);
