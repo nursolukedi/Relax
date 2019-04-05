@@ -2,16 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.relax.birdie.relax">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Relax">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".WelcomePage"
-            android:theme="@style/Relax">
+            android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,21 +24,50 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Relax" />
-        <activity android:name=".Dashboard" />
-        <activity android:name=".HowStressed" />
-        <activity android:name=".progress" />
-        <activity android:name=".meditations" />
-        <activity android:name=".settings" />
-        <activity android:name=".Calendar" />
-        <activity android:name=".Personal" />
-        <activity android:name=".MeditationInfo" />
-        <activity android:name=".MeditationListInfo" />
-        <activity android:name=".AddCalendarEvent" />
-        <activity android:name=".HeartrateShowing" />
-        <activity android:name=".StressShowing" />
-        <activity android:name=".MeditationDoing" />
-        <activity android:name=".SignUp"></activity>
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".Dashboard"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".HowStressed"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".Progress"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".Meditations"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".Settings"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".Calendar"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".Personal"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".MeditationInfo"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".MeditationListInfo"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".AddCalendarEvent"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".HeartrateShowing"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".StressShowing"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".MeditationDoing"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".SignUp"
+            android:theme="@style/Theme.AppCompat" />
+        <activity android:name=".RecieveHeartbeat"></activity>
     </application>
 
 </manifest>
