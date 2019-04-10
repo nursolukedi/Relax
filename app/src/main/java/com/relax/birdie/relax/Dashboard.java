@@ -33,8 +33,8 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private ImageView howStressedImage;
     private ImageView meditationsImage;
     // Variable - Other variables
-    private FirebaseAuth firebaseAuth;
-    private int heartRate;
+    //private FirebaseAuth firebaseAuth;
+
     private User mockUser;
 
     @Override
@@ -57,7 +57,6 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         progressImage = findViewById(R.id.progressTV);
         calendarImage = findViewById(R.id.calendarTV);
 
-        signOut = findViewById(R.id.signOut);
 
         // Listen all of the buttons
         howStressed.setOnClickListener(this);
@@ -66,33 +65,23 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         progress.setOnClickListener(this);
         calendar.setOnClickListener(this);
         personal.setOnClickListener(this);
-        signOut.setOnClickListener(this);
 
-        // Get current heart rate
-        heartRate = getHeartRate();
 
         // Initialize a mock user
         mockUser = new User("email", "name", "surname", 30, 1, 3);
     }
     public void onClick(View v) {
-       if (v == signOut) { // Sign out
+       /*if (v == signOut) { // Sign out
         //   firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        else if (v == howStressed) { // Check whether the user is stressed
-           Random rand = new Random();
-           int adjustment = (int)(rand.nextGaussian()*5);
-           int newHeartRate = heartRate + adjustment;
-           if (mockUser.isStressed(newHeartRate)) {
-               Toast.makeText(this, "You seem like you are stressed. What about meditation?", Toast.LENGTH_LONG).show();
+        else*/
+       if (v == howStressed) { // Check whether the user is stressed
                finish();
-               startActivity(new Intent(this, Meditations.class));
+               startActivity(new Intent(this, HowStressed.class));
            }
-           else {
-               Toast.makeText(this, "Great! You seem fine.", Toast.LENGTH_SHORT).show();
-           }
-        }
+
         else if (v == meditations) { // How stressed test activity
             finish();
             startActivity(new Intent(this, Meditations.class));
@@ -102,14 +91,4 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
        }
     }
 
-    /**
-     * Get current heart rate. Substituted with a random number generator.
-     * @return Current heart rate
-     */
-    public int getHeartRate() {
-        int mean = 80;
-        int stdDeviation = 20;
-        Random rand = new Random();
-        return (int)(rand.nextGaussian() * stdDeviation + mean);
-    }
 }

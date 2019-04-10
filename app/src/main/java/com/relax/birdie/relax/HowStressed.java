@@ -40,7 +40,7 @@ public class HowStressed extends AppCompatActivity implements View.OnClickListen
 
 
     }
-
+/*
     public void onClick(View v) {
         if (v == stressed) { // Check whether the user is stressed
             Random rand = new Random();
@@ -57,8 +57,7 @@ public class HowStressed extends AppCompatActivity implements View.OnClickListen
             startActivity(new Intent(this, RecieveHeartbeat.class));
         }
     }
-
-    /**
+*/
     @Override
     public void onClick(View v) {
         if(v == checkButton) {
@@ -67,19 +66,21 @@ public class HowStressed extends AppCompatActivity implements View.OnClickListen
             int newHeartRate = heartRate + adjustment;
             if (mockUser.isStressed(newHeartRate)) {
                 Toast.makeText(this, "You are under stress. Heart rate = " + newHeartRate, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Meditations.class));
             }
             else {
                 Toast.makeText(this, "You are NOT under stress. Heart rate = " + newHeartRate, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Dashboard.class));
             }
         }
 
     }
-
+/*
      * Get current heart rate. Substituted with a random number generator.
      * @return Current heart rate
      */
     public int getHeartRate() {
-        int mean = 80;
+        int mean = 100;
         int stdDeviation = 20;
         Random rand = new Random();
         return (int)(rand.nextGaussian() * stdDeviation + mean);

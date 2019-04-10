@@ -1,13 +1,18 @@
 package com.relax.birdie.relax;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.textclassifier.TextClassification;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class HeartrateShowing extends AppCompatActivity {
+import java.util.Random;
+
+public class HeartrateShowing extends AppCompatActivity implements View.OnClickListener{
 
     private TextView heartrateInfo, meditationInfoTV;
     private ListView listView;
@@ -26,10 +31,18 @@ public class HeartrateShowing extends AppCompatActivity {
 
 
         // Listen all of the buttons
-        heartrateInfo.setOnClickListener(this);
-        meditationInfoTV.setOnClickListener(this);
-        listView.setOnClickListener(this);
         backDashboard.setOnClickListener(this);
+
+
+    }
+
+    public void onClick(View v) {
+       if(v == backDashboard )
+       {
+           Toast.makeText(this, "Hope it works", Toast.LENGTH_LONG).show();
+           finish();
+           startActivity(new Intent(this, Dashboard.class));
+       }
     }
 
     public String recommendMeditation(int heartRate)
