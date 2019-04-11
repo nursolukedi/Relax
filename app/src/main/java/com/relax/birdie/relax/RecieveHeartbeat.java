@@ -1,8 +1,6 @@
 package com.relax.birdie.relax;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -11,10 +9,11 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.bluetooth.BluetoothAdapter;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.internal.Objects;
 
 import java.io.File;
 import java.util.List;
@@ -26,6 +25,7 @@ import java.util.List;
 * Pass string to show heartbeat data section.
 *
 * */
+
 public class RecieveHeartbeat extends AppCompatActivity {
     private static final int DISCOVER_DURATION = 300;
     private static final int REQUEST_BLU = 1;
@@ -33,14 +33,28 @@ public class RecieveHeartbeat extends AppCompatActivity {
     private TextView heartBeat ;
     private BluetoothAdapter BTAdapter;
     private DeviceListFragment mDeviceListFragment;
-
-    public static int REQUEST_BLUETOOTH = 1;
+    private Button nextButton;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recieve_heartbeat);
+        Bundle bundle = getIntent().getExtras();
+        message = bundle.getString("mood");
+        heartBeat = findViewById(R.id.heartBeat);
+        heartBeat.setText("You said your mood is : " + message);
+        nextButton =  findViewById(R.id.nextButton);
 
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecieveHeartbeat.this, HeartrateShowing.class);
+                intent.putExtra("mood" , message);
+                startActivity(intent);
+            }
+        });
+        /*
         BTAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // Phone does not support Bluetooth so let the user know and exit.
@@ -65,9 +79,9 @@ public class RecieveHeartbeat extends AppCompatActivity {
             Intent enableBT = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBT, REQUEST_BLUETOOTH);
         }
-        progressDialog = new ProgressDialog(this);
-        heartBeat = findViewById(R.id.heartBeat);
 
+        */
+        progressDialog = new ProgressDialog(this);
 
         // If validations are OK, it will first show a progress bar
         progressDialog.setMessage("Receiveing your heartbeat in...");

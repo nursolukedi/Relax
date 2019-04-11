@@ -28,20 +28,10 @@ public class DeviceListAdapter extends ArrayAdapter<DeviceItem>{
         this.context = context;
     }
 
-    /**
-     * Holder for the list items.
-     */
     private class ViewHolder{
         TextView titleText;
     }
 
-    /**
-     *
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
-     */
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         View line = null;

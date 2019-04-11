@@ -74,32 +74,32 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         if (v == signOut) { // Sign out
            firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(Dashboard.this, LoginActivity.class));
         }
         else
        if (v == howStressed) { // Check whether the user is stressed
                finish();
-               startActivity(new Intent(this, HowStressed.class));
+               startActivity(new Intent(Dashboard.this, HowStressed.class));
            }
 
         else if (v == meditations) { // How stressed test activity
             finish();
-            startActivity(new Intent(this, Meditations.class));
+            startActivity(new Intent(Dashboard.this, Meditations.class));
         }
         else if (v == settings)
        {
-           Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+           Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
        }
         else if (v == progress )
         {
-            Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+            Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
         }
             else if (v == calendar )
         {
-            Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+            Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
         }
         else if (v == personal ) {
-           Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+           Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
        }
     }
 

@@ -21,10 +21,15 @@ public class HeartrateShowing extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heartrate_showing);
+        Bundle bundle = getIntent().getExtras();
+        final String message = bundle.getString("mood");
+
 
         //initalization
 
         heartrateInfo = findViewById(R.id.heartRate);
+        String messageString = "Your current heartrate is : 120 and you said your mood was : "  + message;
+        heartrateInfo.setText(messageString);
         meditationInfoTV = findViewById(R.id.recommendTV);
         listView = findViewById(R.id.listView);
         backDashboard = findViewById(R.id.back);
@@ -32,7 +37,6 @@ public class HeartrateShowing extends AppCompatActivity implements View.OnClickL
 
         // Listen all of the buttons
         backDashboard.setOnClickListener(this);
-
 
     }
 
