@@ -1,6 +1,8 @@
 package com.relax.birdie.relax;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -17,17 +19,52 @@ import com.google.android.gms.common.internal.Objects;
 import java.io.File;
 import java.util.List;
 
+/*
+* We will recieve heartbeat data here and then show it on activity as we receive it.
+* We will store first 10 sec*6 's value and last 10 sec*6 value.
+* Then we will take their difference and then show string accordingly.
+* Pass string to show heartbeat data section.
+*
+* */
 public class RecieveHeartbeat extends AppCompatActivity {
     private static final int DISCOVER_DURATION = 300;
     private static final int REQUEST_BLU = 1;
     private ProgressDialog progressDialog;
     private TextView heartBeat ;
+    private BluetoothAdapter BTAdapter;
+    private DeviceListFragment mDeviceListFragment;
+
+    public static int REQUEST_BLUETOOTH = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recieve_heartbeat);
 
+        BTAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        // Phone does not support Bluetooth so let the user know and exit.
+        if (BTAdapter == null) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Not compatible")
+                    .setMessage("Your phone does not support Bluetooth")
+                    .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            System.exit(0);
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        if (BTAdapter == null)
+        {
+            System.out.println("BTAdapter is null");
+        }
+
+        if (BTAdapter.isEnabled() == false) {
+            Intent enableBT = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBT, REQUEST_BLUETOOTH);
+        }
         progressDialog = new ProgressDialog(this);
         heartBeat = findViewById(R.id.heartBeat);
 
