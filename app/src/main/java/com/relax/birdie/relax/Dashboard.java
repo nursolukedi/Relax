@@ -33,7 +33,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private ImageView howStressedImage;
     private ImageView meditationsImage;
     // Variable - Other variables
-    //private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
 
     private User mockUser;
 
@@ -71,12 +71,12 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         mockUser = new User("email", "name", "surname", 30, 1, 3);
     }
     public void onClick(View v) {
-       /*if (v == signOut) { // Sign out
-        //   firebaseAuth.signOut();
+        if (v == signOut) { // Sign out
+           firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        else*/
+        else
        if (v == howStressed) { // Check whether the user is stressed
                finish();
                startActivity(new Intent(this, HowStressed.class));
@@ -86,7 +86,19 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
             finish();
             startActivity(new Intent(this, Meditations.class));
         }
-        else if (v == settings || v == progress || v == calendar || v == personal ) {
+        else if (v == settings)
+       {
+           Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+       }
+        else if (v == progress )
+        {
+            Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+        }
+            else if (v == calendar )
+        {
+            Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+        }
+        else if (v == personal ) {
            Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
        }
     }
