@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity{
     private EditText password, email;
     private FirebaseAuth mAuth;
     private Button signIn, signUp;
@@ -51,64 +51,57 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog = new ProgressDialog(this);
 
         if (mAuth.getCurrentUser() != null) {
-            // start profile activity
-            System.out.println("Email of the current user: " + mAuth.getCurrentUser().getEmail());
-            finish();
-            startActivity(new Intent(getApplicationContext(), Dashboard.class));
+
+            signUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // will open registration activity here
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                }
+            });
+            signIn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (TextUtils.isEmpty(email.getText().toString())) {
+                        // Text is empty
+                        Toast.makeText(LoginActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(password.getText().toString())) {
+                        // Password is empty
+                        Toast.makeText(LoginActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // If validations are OK, it will first show a progress bar
+                    progressDialog.setMessage("Logging in...");
+                    progressDialog.show();
 
 
-            signUp.setOnClickListener(this);
-            signIn.setOnClickListener(this);
+                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Log.d("loginpage", "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                                    if (!task.isSuccessful()) {
+                                        Log.w("loginpage", "signInWithEmail:failed", task.getException());
+                                        Toast.makeText(LoginActivity.this, "hata", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText( getApplicationContext(),"User SIGNED IN ",
+                                                Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                                        startActivity(intent);
+                                    }
+
+                                } });
+                }});
         }
     }
-        public void onClick (View v){
-            if (v == signIn) {
-                userLogin();
-            }
-            if (v == signUp) {
-                // will open registration activity here
-                finish();
-                startActivity(new Intent(this, Dashboard.class));
-            }
-        }
 
-        private void userLogin () {
-            String textEmail = email.getText().toString().trim();
-            String textPassword = password.getText().toString().trim();
-
-            if (TextUtils.isEmpty(textEmail)) {
-                // Text is empty
-                Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (TextUtils.isEmpty(textPassword)) {
-                // Password is empty
-                Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // If validations are OK, it will first show a progress bar
-            progressDialog.setMessage("Logging in...");
-            progressDialog.show();
-
-            startActivity(new Intent(this, Dashboard.class));
-
-
-            // Firebase sign in step
-            mAuth.signInWithEmailAndPassword(textEmail, textPassword)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            progressDialog.dismiss();
-                            if (task.isSuccessful()) {
-                                // start profile activity
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), Dashboard.class));
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Login failed.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
     }
