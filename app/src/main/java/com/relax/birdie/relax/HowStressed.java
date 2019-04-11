@@ -21,10 +21,10 @@ public class HowStressed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_stressed);
         checkButton = findViewById(R.id.checkButton);
-        happy = findViewById(R.id.checkButton);
-        calm = findViewById(R.id.checkButton);
-        stressed = findViewById(R.id.checkButton);
-        sad = findViewById(R.id.checkButton);
+        happy = findViewById(R.id.happy);
+        calm = findViewById(R.id.calm);
+        stressed = findViewById(R.id.stressed);
+        sad = findViewById(R.id.sad);
         howStressedImage = findViewById(R.id.howStressedImage);
 
         mockUser = new User("email", "name", "surname", 30, 1, 3);
