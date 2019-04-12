@@ -20,6 +20,8 @@ public class HeartrateShowing extends AppCompatActivity{
     ListView listView;
     Button backDashboard;
     MeditationAdaptor meditationAdaptor;
+    Meditation.Meditate[] meditations = new Meditation.Meditate[3];
+    Meditation.Meditate[] meditationInstance = Meditation.meditations;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,20 @@ public class HeartrateShowing extends AppCompatActivity{
         backDashboard = findViewById(R.id.back);
 
         // list and adaptor and any other list related info
-        meditationAdaptor = new MeditationAdaptor(HeartrateShowing.this, Meditation.meditations);
+        int validCount = 0 ;
+        for(int i = 0 ; i < meditationInstance.length ; i++  )
+        {
+          if( meditationInstance[i].getMeditationMoodType().equals(message) )
+          {
+              if( validCount > meditations.length )
+                  break;
+              else{
+                meditations[validCount] = Meditation.meditations[i] ;
+                validCount ++;}
+          }
+        }
+
+        meditationAdaptor = new MeditationAdaptor(HeartrateShowing.this, meditations);
         listView.setAdapter(meditationAdaptor);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -56,6 +71,7 @@ public class HeartrateShowing extends AppCompatActivity{
                     Toast.makeText(HeartrateShowing.this, "Hope it works", Toast.LENGTH_LONG).show();
                     finish();
                     startActivity(new Intent(HeartrateShowing.this, Dashboard.class));
+
             }
         });
 

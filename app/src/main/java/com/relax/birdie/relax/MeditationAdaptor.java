@@ -43,29 +43,33 @@ public class MeditationAdaptor extends ArrayAdapter<Meditation.Meditate>
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null)
-        {
-            convertView = layoutInflater.inflate(R.layout.meditation_list_info,null);
-            holder = new ViewHolder();
-            holder.meditationName = (TextView) convertView.findViewById(R.id.meditationName);
-            holder.pictureId = (ImageView) convertView.findViewById(R.id.pictureId);
-            convertView.setTag( holder);
-        }
-        else
-        {
-            holder = (ViewHolder)convertView.getTag();
-        }
+
+
+            if (convertView == null)
+            {
+                convertView = layoutInflater.inflate(R.layout.meditation_list_info,null);
+                holder = new ViewHolder();
+                holder.meditationName = (TextView) convertView.findViewById(R.id.meditationName);
+                holder.pictureId = (ImageView) convertView.findViewById(R.id.pictureId);
+
+                convertView.setTag( holder);
+            }
+            else
+            {
+                holder = (ViewHolder)convertView.getTag();
+            }
 
         Meditation.Meditate meditate = meditates[position];
 
         if(meditate != null)
         {
             holder.pictureId.setImageResource(meditate.getPicture());
-            holder.meditationName.setText(meditate.getMeditationName());
-
+            String meditationText = meditate.getMeditationName() + "\n  Meditation mood is : " + meditate.getMeditationMoodType() + "\n Meditation level is for : " + meditate.getMeditationLevel() +"\n";
+            holder.meditationName.setText(meditationText);
+            return convertView;
         }
 
-        return convertView;
+        return null;
 
     }
 }

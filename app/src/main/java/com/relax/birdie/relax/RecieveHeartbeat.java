@@ -51,8 +51,10 @@ public class RecieveHeartbeat extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(RecieveHeartbeat.this, HeartrateShowing.class);
                 intent.putExtra("mood" , message);
+
                 startActivity(intent);
             }
         });
