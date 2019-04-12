@@ -57,9 +57,6 @@
             android:name=".MeditationInfo"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".MeditationListInfo"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".AddCalendarEvent"
             android:theme="@style/AppTheme" />
         <activity

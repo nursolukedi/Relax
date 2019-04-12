@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class MeditationAdaptor extends ArrayAdapter<Meditation.Meditate>
 {
+    // meditation adaptor for any list.
     private static class ViewHolder {
         TextView meditationName;
         ImageView pictureId;
@@ -44,7 +45,7 @@ public class MeditationAdaptor extends ArrayAdapter<Meditation.Meditate>
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
         {
-            convertView = layoutInflater.inflate(R.layout.activity_meditation_list_info,null);
+            convertView = layoutInflater.inflate(R.layout.meditation_list_info,null);
             holder = new ViewHolder();
             holder.meditationName = (TextView) convertView.findViewById(R.id.meditationName);
             holder.pictureId = (ImageView) convertView.findViewById(R.id.pictureId);

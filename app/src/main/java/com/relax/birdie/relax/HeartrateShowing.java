@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.textclassifier.TextClassification;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,17 +13,19 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-public class HeartrateShowing extends AppCompatActivity implements View.OnClickListener{
+import com.relax.birdie.relax.MeditationAdaptor;
+public class HeartrateShowing extends AppCompatActivity{
 
-    private TextView heartrateInfo, meditationInfoTV;
-    private ListView listView;
-    private Button backDashboard;
+    TextView heartrateInfo, meditationInfoTV;
+    ListView listView;
+    Button backDashboard;
+    MeditationAdaptor meditationAdaptor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heartrate_showing);
         Bundle bundle = getIntent().getExtras();
-        final String message = bundle.getString("mood");
+        String message = bundle.getString("mood");
 
 
         //initalization
@@ -34,19 +37,28 @@ public class HeartrateShowing extends AppCompatActivity implements View.OnClickL
         listView = findViewById(R.id.listView);
         backDashboard = findViewById(R.id.back);
 
-
+        // list and adaptor and any other list related info
+        meditationAdaptor = new MeditationAdaptor(HeartrateShowing.this, Meditation.meditations);
+        listView.setAdapter(meditationAdaptor);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(),MeditationInfo.class);
+                Meditation.Meditate meditates = (Meditation.Meditate) listView.getItemAtPosition(position);
+                intent.putExtra("meditationId",meditates.getMeditationName());
+                startActivity(intent);
+            }
+        });
         // Listen all of the buttons
-        backDashboard.setOnClickListener(this);
+        backDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Toast.makeText(HeartrateShowing.this, "Hope it works", Toast.LENGTH_LONG).show();
+                    finish();
+                    startActivity(new Intent(HeartrateShowing.this, Dashboard.class));
+            }
+        });
 
-    }
-
-    public void onClick(View v) {
-       if(v == backDashboard )
-       {
-           Toast.makeText(this, "Hope it works", Toast.LENGTH_LONG).show();
-           finish();
-           startActivity(new Intent(this, Dashboard.class));
-       }
     }
 
     public String recommendMeditation(int heartRate)

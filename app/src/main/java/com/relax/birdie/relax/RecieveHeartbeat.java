@@ -1,6 +1,8 @@
 package com.relax.birdie.relax;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -28,7 +30,7 @@ import java.util.List;
 
 public class RecieveHeartbeat extends AppCompatActivity {
     private static final int DISCOVER_DURATION = 300;
-    private static final int REQUEST_BLU = 1;
+    private static final int REQUEST_BLUETOOTH = 1;
     private ProgressDialog progressDialog;
     private TextView heartBeat ;
     private BluetoothAdapter BTAdapter;
@@ -54,8 +56,8 @@ public class RecieveHeartbeat extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*
-        BTAdapter = BluetoothAdapter.getDefaultAdapter();
+
+       /* BTAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // Phone does not support Bluetooth so let the user know and exit.
         if (BTAdapter == null) {
@@ -79,8 +81,8 @@ public class RecieveHeartbeat extends AppCompatActivity {
             Intent enableBT = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBT, REQUEST_BLUETOOTH);
         }
+*/
 
-        */
         progressDialog = new ProgressDialog(this);
 
         // If validations are OK, it will first show a progress bar
@@ -88,6 +90,7 @@ public class RecieveHeartbeat extends AppCompatActivity {
         progressDialog.show();
 
     }
+    /*
     public void sendViaBluetooth(){
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -103,12 +106,12 @@ public class RecieveHeartbeat extends AppCompatActivity {
     public void enableBluetooth(){
         Intent discoveryIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoveryIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, DISCOVER_DURATION);
-        startActivityForResult(discoveryIntent, REQUEST_BLU);
+        startActivityForResult(discoveryIntent, REQUEST_BLUETOOTH);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if(resultCode == DISCOVER_DURATION && requestCode == REQUEST_BLU ){
+        if(resultCode == DISCOVER_DURATION && requestCode == REQUEST_BLUETOOTH ){
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
             intent.setType("text/plain");
@@ -141,5 +144,5 @@ public class RecieveHeartbeat extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
 }
