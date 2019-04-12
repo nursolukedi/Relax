@@ -11,11 +11,12 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class HowStressed extends AppCompatActivity {
-    Button checkButton, happy, calm, stressed, sad ;
+    Button checkButton, happy, calm, stressed, sad;
     int heartRate;
     User mockUser;
     ImageView howStressedImage;
     String mood = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,23 +33,22 @@ public class HowStressed extends AppCompatActivity {
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mood.equals(""))
-                {
+                if (mood.equals("")) {
                     Toast.makeText(HowStressed.this, "Please select your mood ", Toast.LENGTH_LONG).show();
 
-                }
-                else {
+                } else {
                     Intent intent = new Intent(HowStressed.this, RecieveHeartbeat.class);
-                    Bundle moodBundle= new Bundle();
+                    Bundle moodBundle = new Bundle();
                     moodBundle.putString("mood", mood);
                     intent.putExtras(moodBundle);
-                    startActivity(intent);}
+                    startActivity(intent);
+                }
             }
         });
         happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mood ="happy";
+                mood = "happy";
             }
         });
         calm.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +60,7 @@ public class HowStressed extends AppCompatActivity {
         stressed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mood = "stressed" ;
+                mood = "stressed";
             }
         });
         sad.setOnClickListener(new View.OnClickListener() {
@@ -72,28 +72,4 @@ public class HowStressed extends AppCompatActivity {
 
 
     }
-
-
-            // Saving yourself code.
-           /* Random rand = new Random();
-            int adjustment = (int)(rand.nextGaussian()*5);
-            int newHeartRate = heartRate + adjustment;
-            if (mockUser.isStressed(newHeartRate)) {
-                Toast.makeText(this, "You are under stress. Heart rate = " + newHeartRate, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, Meditations.class));
-            }
-            else {
-                Toast.makeText(this, "You are NOT under stress. Heart rate = " + newHeartRate, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, Dashboard.class));
-            }
-            //burda } eksik //
-
-            public int getHeartRate() {
-            int mean = 100;
-            int stdDeviation = 20;
-            Random rand = new Random();
-            return (int)(rand.nextGaussian() * stdDeviation + mean);
-            }
-
-            */
 }

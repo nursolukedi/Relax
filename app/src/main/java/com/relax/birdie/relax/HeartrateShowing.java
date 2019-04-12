@@ -22,6 +22,10 @@ public class HeartrateShowing extends AppCompatActivity{
     MeditationAdaptor meditationAdaptor;
     Meditation.Meditate[] meditations = new Meditation.Meditate[3];
     Meditation.Meditate[] meditationInstance = Meditation.meditations;
+
+    int madeUpHeartrate = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +35,9 @@ public class HeartrateShowing extends AppCompatActivity{
 
 
         //initalization
-
+        madeUpHeartrate = heartRateGenerate();
         heartrateInfo = findViewById(R.id.heartRate);
-        String messageString = "Your current heartrate is : 120 and you said your mood was : "  + message;
+        String messageString = "Your current heartrate is : "+ madeUpHeartrate + " and you said your mood was : "  + message + "\n and it seems your stress level is : " +  recommendMeditation(madeUpHeartrate) ;
         heartrateInfo.setText(messageString);
         meditationInfoTV = findViewById(R.id.recommendTV);
         listView = findViewById(R.id.listView);
@@ -98,5 +102,11 @@ public class HeartrateShowing extends AppCompatActivity{
         }
     }
 
-
+// Saving yourself code.
+    public int heartRateGenerate(){
+        int mean = 100;
+        int stdDeviation = 20;
+        Random rand = new Random();
+        return (int)(rand.nextGaussian() * stdDeviation + mean);
+    }
 }

@@ -2,8 +2,13 @@ package com.relax.birdie.relax;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -18,6 +23,7 @@ import android.widget.Toast;
 
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /*
@@ -33,11 +39,12 @@ public class RecieveHeartbeat extends AppCompatActivity {
     private static final int REQUEST_BLUETOOTH = 1;
     private ProgressDialog progressDialog;
     private TextView heartBeat ;
-    private BluetoothAdapter BTAdapter;
-    private DeviceListFragment mDeviceListFragment;
     private Button nextButton;
     private String message;
-
+    private InputStream inputStream ;
+    // BluetoothSocket socket;
+   // byte[] buffer = new byte[1024];
+   // int bytes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,11 @@ public class RecieveHeartbeat extends AppCompatActivity {
         heartBeat.setText("You said your mood is : " + message);
         nextButton =  findViewById(R.id.nextButton);
 
+        // Register for broadcasts when a device is discovered.
+       // IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+     //   registerReceiver(receiver, filter);
+
+       // inputStream = socket.getInputStream();
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +70,10 @@ public class RecieveHeartbeat extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+/*
+        while(true){
+            bytes = inputStream.read(buffer);
+        }
 
         BTAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -84,12 +100,28 @@ public class RecieveHeartbeat extends AppCompatActivity {
             startActivityForResult(enableBT, REQUEST_BLUETOOTH);
         }
 
-        progressDialog = new ProgressDialog(this);
 
-        // If validations are OK, it will first show a progress bar
-        progressDialog.setMessage("Receiveing your heartbeat in...");
-        progressDialog.show();
+    }
 
+    // Create a BroadcastReceiver for ACTION_FOUND.
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                // Discovery has found a device. Get the BluetoothDevice
+                // object and its info from the Intent.
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                String deviceName = device.getName();
+                String deviceHardwareAddress = device.getAddress(); // MAC address
+            }
+        }
+    };
+
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Don't forget to unregister the ACTION_FOUND receiver.
+        unregisterReceiver(receiver);
     }
 
     public void sendViaBluetooth(){
@@ -145,5 +177,5 @@ public class RecieveHeartbeat extends AppCompatActivity {
                 }
             }
         }
-    }
-}
+    }*/
+}}
