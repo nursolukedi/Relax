@@ -59,7 +59,7 @@ public class RecieveHeartbeat extends AppCompatActivity {
             }
         });
 
-       /* BTAdapter = BluetoothAdapter.getDefaultAdapter();
+        BTAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // Phone does not support Bluetooth so let the user know and exit.
         if (BTAdapter == null) {
@@ -83,7 +83,6 @@ public class RecieveHeartbeat extends AppCompatActivity {
             Intent enableBT = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBT, REQUEST_BLUETOOTH);
         }
-*/
 
         progressDialog = new ProgressDialog(this);
 
@@ -92,7 +91,7 @@ public class RecieveHeartbeat extends AppCompatActivity {
         progressDialog.show();
 
     }
-    /*
+
     public void sendViaBluetooth(){
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -146,5 +145,5 @@ public class RecieveHeartbeat extends AppCompatActivity {
                 }
             }
         }
-    }*/
+    }
 }
