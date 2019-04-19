@@ -57,7 +57,6 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         progressImage = findViewById(R.id.progressTV);
         calendarImage = findViewById(R.id.calendarTV);
 
-        signOut = findViewById(R.id.signOut);
 
         // Listen all of the buttons
         howStressed.setOnClickListener(this);
