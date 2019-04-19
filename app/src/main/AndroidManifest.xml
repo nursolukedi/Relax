@@ -5,6 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,59 +20,59 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".WelcomePage"
-            android:theme="@style/Theme.AppCompat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Dashboard"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
         <activity
             android:name=".HowStressed"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".Progress"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Meditations"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Settings"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".Calendar"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Personal"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MeditationInfo"
-            android:theme="@style/Theme.AppCompat" />
-        <activity
-            android:name=".MeditationListInfo"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".AddCalendarEvent"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".HeartrateShowing"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".StressShowing"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MeditationDoing"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".SignUp"
-            android:theme="@style/Theme.AppCompat" />
-        <activity android:name=".RecieveHeartbeat"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".RecieveHeartbeat"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

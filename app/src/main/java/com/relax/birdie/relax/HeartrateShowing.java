@@ -5,30 +5,81 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.textclassifier.TextClassification;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class HeartrateShowing extends AppCompatActivity implements View.OnClickListener{
+import java.util.Random;
 
-    private TextView heartrateInfo, meditationInfoTV;
-    private ListView listView;
-    private Button backDashboard;
+import com.relax.birdie.relax.MeditationAdaptor;
+public class HeartrateShowing extends AppCompatActivity{
+
+    TextView heartrateInfo, meditationInfoTV;
+    ListView listView;
+    Button backDashboard;
+    MeditationAdaptor meditationAdaptor;
+    Meditation.Meditate[] meditations = new Meditation.Meditate[3];
+    Meditation.Meditate[] meditationInstance = Meditation.meditations;
+
+    int madeUpHeartrate = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heartrate_showing);
+        Bundle bundle = getIntent().getExtras();
+        String message = bundle.getString("mood");
+
 
         //initalization
-
+        madeUpHeartrate = heartRateGenerate();
         heartrateInfo = findViewById(R.id.heartRate);
+        String messageString = "Your current heartrate is : "+ madeUpHeartrate + " and you said your mood was : "  + message + "\n and it seems your stress level is : " +  recommendMeditation(madeUpHeartrate) ;
+        heartrateInfo.setText(messageString);
         meditationInfoTV = findViewById(R.id.recommendTV);
         listView = findViewById(R.id.listView);
         backDashboard = findViewById(R.id.back);
 
+        // list and adaptor and any other list related info
+        int validCount = 0 ;
+        for(int i = 0 ; i < meditationInstance.length ; i++  )
+        {
+          if( meditationInstance[i].getMeditationMoodType().equals(message) )
+          {
+              if( validCount > meditations.length )
+                  break;
+              else{
+                meditations[validCount] = Meditation.meditations[i] ;
+                validCount ++;}
+          }
+        }
 
+        meditationAdaptor = new MeditationAdaptor(HeartrateShowing.this, meditations);
+        listView.setAdapter(meditationAdaptor);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(),MeditationInfo.class);
+                Meditation.Meditate meditates = (Meditation.Meditate) listView.getItemAtPosition(position);
+                intent.putExtra("meditationId",meditates.getMeditationName());
+                startActivity(intent);
+            }
+        });
         // Listen all of the buttons
-        backDashboard.setOnClickListener(this);
+        backDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Toast.makeText(HeartrateShowing.this, "Hope it works", Toast.LENGTH_LONG).show();
+                    finish();
+                    startActivity(new Intent(HeartrateShowing.this, Dashboard.class));
+
+            }
+        });
+
     }
 
     public String recommendMeditation(int heartRate)
@@ -52,12 +103,11 @@ public class HeartrateShowing extends AppCompatActivity implements View.OnClickL
         }
     }
 
-
-    @Override
-    public void onClick(View v) {
-        if(v == backDashboard) {
-            finish();
-            startActivity(new Intent(this, Dashboard.class));
-        }
+// Saving yourself code.
+    public int heartRateGenerate(){
+        int mean = 100;
+        int stdDeviation = 20;
+        Random rand = new Random();
+        return (int)(rand.nextGaussian() * stdDeviation + mean);
     }
 }

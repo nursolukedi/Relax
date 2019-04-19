@@ -34,7 +34,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private ImageView meditationsImage;
     // Variable - Other variables
     private FirebaseAuth firebaseAuth;
-    private int heartRate;
+
     private User mockUser;
 
     @Override
@@ -65,50 +65,42 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         progress.setOnClickListener(this);
         calendar.setOnClickListener(this);
         personal.setOnClickListener(this);
-        signOut.setOnClickListener(this);
 
-        // Get current heart rate
-        heartRate = getHeartRate();
 
         // Initialize a mock user
         mockUser = new User("email", "name", "surname", 30, 1, 3);
     }
     public void onClick(View v) {
-       if (v == signOut) { // Sign out
-        //   firebaseAuth.signOut();
+        if (v == signOut) { // Sign out
+           firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(Dashboard.this, LoginActivity.class));
         }
-        else if (v == howStressed) { // Check whether the user is stressed
-           Random rand = new Random();
-           int adjustment = (int)(rand.nextGaussian()*5);
-           int newHeartRate = heartRate + adjustment;
-           if (mockUser.isStressed(newHeartRate)) {
-               Toast.makeText(this, "You seem like you are stressed. What about meditation?", Toast.LENGTH_LONG).show();
+        else
+       if (v == howStressed) { // Check whether the user is stressed
                finish();
-               startActivity(new Intent(this, Meditations.class));
+               startActivity(new Intent(Dashboard.this, HowStressed.class));
            }
-           else {
-               Toast.makeText(this, "Great! You seem fine.", Toast.LENGTH_SHORT).show();
-           }
-        }
+
         else if (v == meditations) { // How stressed test activity
             finish();
-            startActivity(new Intent(this, Meditations.class));
+            startActivity(new Intent(Dashboard.this, Meditations.class));
         }
-        else if (v == settings || v == progress || v == calendar || v == personal ) {
-           Toast.makeText(this, "This section is under construction", Toast.LENGTH_LONG).show();
+        else if (v == settings)
+       {
+           Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
+       }
+        else if (v == progress )
+        {
+            Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
+        }
+            else if (v == calendar )
+        {
+            Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
+        }
+        else if (v == personal ) {
+           Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
        }
     }
 
-    /**
-     * Get current heart rate. Substituted with a random number generator.
-     * @return Current heart rate
-     */
-    public int getHeartRate() {
-        int mean = 80;
-        int stdDeviation = 20;
-        Random rand = new Random();
-        return (int)(rand.nextGaussian() * stdDeviation + mean);
-    }
 }

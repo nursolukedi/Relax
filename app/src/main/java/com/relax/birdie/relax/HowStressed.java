@@ -5,83 +5,71 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SeekBar;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.Random;
 
-public class HowStressed extends AppCompatActivity implements View.OnClickListener {
-    private Button checkButton;
-    private Button happy;
-    private Button calm;
-    private Button stressed;
-    private Button sad;
-    private int heartRate;
-    private User mockUser;
+public class HowStressed extends AppCompatActivity {
+    Button checkButton, happy, calm, stressed, sad;
+    int heartRate;
+    User mockUser;
+    ImageView howStressedImage;
+    String mood = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_stressed);
         checkButton = findViewById(R.id.checkButton);
-        happy = findViewById(R.id.checkButton);
-        calm = findViewById(R.id.checkButton);
-        stressed = findViewById(R.id.checkButton);
-        sad = findViewById(R.id.checkButton);
+        happy = findViewById(R.id.happy);
+        calm = findViewById(R.id.calm);
+        stressed = findViewById(R.id.stressed);
+        sad = findViewById(R.id.sad);
+        howStressedImage = findViewById(R.id.howStressedImage);
 
         mockUser = new User("email", "name", "surname", 30, 1, 3);
-        heartRate = getHeartRate();
 
-        checkButton.setOnClickListener(this);
-        happy.setOnClickListener(this);
-        calm.setOnClickListener(this);
-        stressed.setOnClickListener(this);
-        sad.setOnClickListener(this);
+        checkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mood.equals("")) {
+                    Toast.makeText(HowStressed.this, "Please select your mood ", Toast.LENGTH_LONG).show();
 
-
-    }
-
-    public void onClick(View v) {
-        if (v == stressed) { // Check whether the user is stressed
-            Random rand = new Random();
-            int adjustment = (int)(rand.nextGaussian()*5);
-            int newHeartRate = heartRate + adjustment;
-            if (mockUser.isStressed(newHeartRate)) {
-                Toast.makeText(this, "You seem like you are stressed. What about meditation?", Toast.LENGTH_LONG).show();
-                finish();
-                startActivity(new Intent(this, Meditations.class));
+                } else {
+                    Intent intent = new Intent(HowStressed.this, RecieveHeartbeat.class);
+                    Bundle moodBundle = new Bundle();
+                    moodBundle.putString("mood", mood);
+                    intent.putExtras(moodBundle);
+                    startActivity(intent);
+                }
             }
-        }
-        else if (v == happy || v == calm || v == sad) { // How stressed test activity
-            finish();
-            startActivity(new Intent(this, RecieveHeartbeat.class));
-        }
-    }
-
-    /**
-    @Override
-    public void onClick(View v) {
-        if(v == checkButton) {
-            Random rand = new Random();
-            int adjustment = (int)(rand.nextGaussian()*5);
-            int newHeartRate = heartRate + adjustment;
-            if (mockUser.isStressed(newHeartRate)) {
-                Toast.makeText(this, "You are under stress. Heart rate = " + newHeartRate, Toast.LENGTH_SHORT).show();
+        });
+        happy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mood = "happy";
             }
-            else {
-                Toast.makeText(this, "You are NOT under stress. Heart rate = " + newHeartRate, Toast.LENGTH_SHORT).show();
+        });
+        calm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mood = "calm";
             }
-        }
+        });
+        stressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mood = "stressed";
+            }
+        });
+        sad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mood = "sad";
+            }
+        });
 
-    }
 
-     * Get current heart rate. Substituted with a random number generator.
-     * @return Current heart rate
-     */
-    public int getHeartRate() {
-        int mean = 80;
-        int stdDeviation = 20;
-        Random rand = new Random();
-        return (int)(rand.nextGaussian() * stdDeviation + mean);
     }
 }
