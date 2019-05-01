@@ -9,19 +9,20 @@
 
     <TextView
         android:id="@+id/recommendTV"
-        android:layout_width="244dp"
-        android:layout_height="43dp"
+        android:layout_width="311dp"
+        android:layout_height="41dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="According to your heartbeat and mood  \n it will be good for you to: "
+        android:text="According to your heartbeat and mood it will \n be good for you to: "
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <Button
         android:id="@+id/back"
@@ -55,12 +56,12 @@
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="370dp"
-        android:layout_height="314dp"
+        android:layout_height="362dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"

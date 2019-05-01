@@ -37,7 +37,7 @@ public class HeartrateShowing extends AppCompatActivity{
         //initalization
         madeUpHeartrate = heartRateGenerate();
         heartrateInfo = findViewById(R.id.heartRate);
-        String messageString = "Your current heartrate is : "+ madeUpHeartrate + " and you said your mood was : "  + message + "\n and it seems your stress level is : " +  recommendMeditation(madeUpHeartrate) ;
+        String messageString = "Your current heartrate is : "+ madeUpHeartrate + " and you said your mood was : "  + message + "and it seems \n your stress level is : " +  recommendMeditation(madeUpHeartrate) ;
         heartrateInfo.setText(messageString);
         meditationInfoTV = findViewById(R.id.recommendTV);
         listView = findViewById(R.id.listView);
