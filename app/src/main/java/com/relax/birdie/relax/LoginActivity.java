@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity{
 
         progressDialog = new ProgressDialog(this);
 
-        if (mAuth.getCurrentUser() != null) {
-
             signUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,4 +94,4 @@ public class LoginActivity extends AppCompatActivity{
         }
     }
 
-    }
+
