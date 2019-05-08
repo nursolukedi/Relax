@@ -3,14 +3,14 @@
     package="com.relax.birdie.relax">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
 
     <application
         android:allowBackup="true"
@@ -33,13 +33,10 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Dashboard"
-            android:theme="@style/AppTheme"/>
-
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".HowStressed"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".Progress"
             android:theme="@style/AppTheme" />
@@ -48,7 +45,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Settings"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Calendar"
             android:theme="@style/AppTheme" />
@@ -57,24 +54,26 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MeditationInfo"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".AddCalendarEvent"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".HeartrateShowing"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".StressShowing"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MeditationDoing"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SignUp"
             android:theme="@style/AppTheme" />
-        <activity android:name=".RecieveHeartbeat"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".RecieveHeartbeat"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ReceiveHeartbeat"></activity>
     </application>
 
 </manifest>
