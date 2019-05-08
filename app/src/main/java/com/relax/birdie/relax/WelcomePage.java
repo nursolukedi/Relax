@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 public class WelcomePage extends AppCompatActivity {
     ImageView relaxImage;
-    private static int TIME_OUT = 4000; // time to launch the another activity
+    private static int TIME_OUT = 1000; // time to launch the another activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity{
                                     {
                                         Toast.makeText( getApplicationContext(),"User SIGNED IN ",
                                                 Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                                        Intent intent = new Intent(getApplicationContext(), SignUp.class);
                                         startActivity(intent);
                                     }
 

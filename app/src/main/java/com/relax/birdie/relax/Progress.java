@@ -10,4 +10,6 @@ public class Progress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
     }
+
+    //TODO Progress class
 }

@@ -49,24 +49,28 @@ public class HowStressed extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mood = "happy";
+                Toast.makeText(HowStressed.this, "You said your mood is happy :) ", Toast.LENGTH_SHORT).show();
             }
         });
         calm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mood = "calm";
+                Toast.makeText(HowStressed.this, "You said that you are calm :) ", Toast.LENGTH_SHORT).show();
             }
         });
         stressed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mood = "stressed";
+                Toast.makeText(HowStressed.this, "You said that you are stressed :", Toast.LENGTH_SHORT).show();
             }
         });
         sad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mood = "sad";
+                Toast.makeText(HowStressed.this, "You said that you are sad :( ", Toast.LENGTH_SHORT).show();
             }
         });
 
