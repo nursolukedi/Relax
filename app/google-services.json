@@ -1,37 +1,39 @@
 {
   "project_info": {
-    "project_number": "293499768394",
-    "firebase_url": "https://relax-a8b7c.firebaseio.com",
-    "project_id": "relax-a8b7c",
-    "storage_bucket": "relax-a8b7c.appspot.com"
+    "project_number": "119979702597",
+    "firebase_url": "https://birdie-bfaeb.firebaseio.com",
+    "project_id": "birdie-bfaeb",
+    "storage_bucket": "birdie-bfaeb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:293499768394:android:aefa84916fb33e42",
+        "mobilesdk_app_id": "1:119979702597:android:aefa84916fb33e42",
         "android_client_info": {
           "package_name": "com.relax.birdie.relax"
         }
       },
       "oauth_client": [
         {
-          "client_id": "293499768394-2v4ucrk1q29kl5frupfcegop0kvtl1v7.apps.googleusercontent.com",
+          "client_id": "119979702597-joqj3mvp1fmuj91dtv993654q4ho2pcl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBvdode-Pw9-B7-sw_x0c-JhgR_5z-yjYI"
+          "current_key": "AIzaSyBY2jI_0em1Zx_vtQW4BH67TPRvoq1tdU4"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 1
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "293499768394-2v4ucrk1q29kl5frupfcegop0kvtl1v7.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     }
