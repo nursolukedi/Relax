@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -26,6 +28,8 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity{
     private EditText password, email;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
     private Button signIn, signUp;
     private ImageView relaxImage;
     private ProgressDialog progressDialog;
@@ -35,6 +39,8 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
         password = findViewById(R.id.passwordText);
         email = findViewById(R.id.mailText);
         relaxImage = findViewById(R.id.relaxImage);
@@ -76,7 +82,17 @@ public class LoginActivity extends AppCompatActivity{
                                     }
                                     else
                                     {
-                                        Toast.makeText(getApplicationContext(),"User SIGNED UP ",
+                                        // Create user object
+                                        User newUser = new User(email.getText().toString().trim());
+
+                                        // Get unique database key
+                                        String key = databaseReference.child("users").push().getKey();
+
+                                        // Add the user to database
+                                        databaseReference.child("users").child(Objects.requireNonNull(key)).setValue(newUser);
+
+                                        // In case of success, continue
+                                        Toast.makeText(getApplicationContext(),"User Signed Up ",
                                                 Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                                         startActivity(intent);
