@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -94,11 +95,11 @@ public class BluetoothConnectionService {
 
         public void cancel() {
             Log.d(TAG, "cancel: Canceling AcceptThread.");
-            try {
+           /* try {
                 mmServerSocket.close();
             } catch (IOException e) {
                 Log.e(TAG, "cancel: Close of AcceptThread ServerSocket failed. " + e.getMessage() );
-            }
+            }*/
         }
 
     }
@@ -146,25 +147,25 @@ public class BluetoothConnectionService {
                 Log.d(TAG, "run: ConnectThread connected.");
             } catch (IOException e) {
                 // Close the socket
-                try {
+               /* try {
                     mmSocket.close();
                     Log.d(TAG, "run: Closed Socket.");
                 } catch (IOException e1) {
                     Log.e(TAG, "mConnectThread: run: Unable to close connection in socket " + e1.getMessage());
                 }
-                Log.d(TAG, "run: ConnectThread: Could not connect to UUID: " + MY_UUID_INSECURE );
+                Log.d(TAG, "run: ConnectThread: Could not connect to UUID: " + MY_UUID_INSECURE );*/
             }
 
             //will talk about this in the 3rd video
             connected(mmSocket,mmDevice);
         }
         public void cancel() {
-            try {
+           /* try {
                 Log.d(TAG, "cancel: Closing Client Socket.");
                 mmSocket.close();
             } catch (IOException e) {
                 Log.e(TAG, "cancel: close() of mmSocket in Connectthread failed. " + e.getMessage());
-            }
+            }*/
         }
     }
 
@@ -271,9 +272,9 @@ public class BluetoothConnectionService {
 
         /* Call this from the main activity to shutdown the connection */
         public void cancel() {
-            try {
+           /* try {
                 mmSocket.close();
-            } catch (IOException e) { }
+            } catch (IOException e) { }*/
         }
     }
 

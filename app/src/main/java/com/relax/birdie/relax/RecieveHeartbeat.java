@@ -66,19 +66,17 @@ public class RecieveHeartbeat extends AppCompatActivity {
 
                 Intent intent = new Intent(RecieveHeartbeat.this, HeartrateShowing.class);
                 intent.putExtra("mood" , message);
-
                 startActivity(intent);
-                finish();
+
             }
         });
 
         debug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RecieveHeartbeat.this, ReceiveHeartbeatBluetooth.class);
-                
+                Intent intent = new Intent(RecieveHeartbeat.this, NewBluetoothControl.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
