@@ -19,11 +19,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 
 public class LoginActivity extends AppCompatActivity{
     private EditText password, email;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
     private Button signIn, signUp;
     private ImageView relaxImage;
     private ProgressDialog progressDialog;
@@ -33,6 +39,8 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
         password = findViewById(R.id.passwordText);
         email = findViewById(R.id.mailText);
         relaxImage = findViewById(R.id.relaxImage);
@@ -45,9 +53,8 @@ public class LoginActivity extends AppCompatActivity{
             signUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // will open registration activity here
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                    Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                    startActivity(intent);
                 }
             });
             signIn.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +78,7 @@ public class LoginActivity extends AppCompatActivity{
                     progressDialog.show();
 
 
-                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -79,7 +86,7 @@ public class LoginActivity extends AppCompatActivity{
 
                                     if (!task.isSuccessful()) {
                                         Log.w("loginpage", "signInWithEmail:failed", task.getException());
-                                        Toast.makeText(LoginActivity.this, "hata", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                     else
                                     {

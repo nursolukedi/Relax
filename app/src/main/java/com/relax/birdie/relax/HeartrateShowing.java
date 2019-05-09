@@ -26,6 +26,7 @@ public class HeartrateShowing extends AppCompatActivity{
     int madeUpHeartrate = 0;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +89,7 @@ public class HeartrateShowing extends AppCompatActivity{
             return "High";
         }
 
-        else if(heartRate > 80 && heartRate < 110)
+        else if(heartRate > 80)
         {
             return "Normal";
         }

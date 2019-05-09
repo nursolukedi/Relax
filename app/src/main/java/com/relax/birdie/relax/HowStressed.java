@@ -63,7 +63,7 @@ public class HowStressed extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mood = "stressed";
-                Toast.makeText(HowStressed.this, "You said that you are stressed :", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HowStressed.this, "You said that you are stressed :(", Toast.LENGTH_SHORT).show();
             }
         });
         sad.setOnClickListener(new View.OnClickListener() {
