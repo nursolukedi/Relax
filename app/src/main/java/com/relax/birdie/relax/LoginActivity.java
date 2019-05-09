@@ -53,55 +53,8 @@ public class LoginActivity extends AppCompatActivity{
             signUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (TextUtils.isEmpty(email.getText().toString())) {
-                        // Text is empty
-                        Toast.makeText(LoginActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (TextUtils.isEmpty(password.getText().toString())) {
-                        // Password is empty
-                        Toast.makeText(LoginActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    // If validations are OK, it will first show a progress bar
-                    progressDialog.setMessage("Signing up...");
-                    progressDialog.show();
-
-
-                    mAuth.createUserWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
-                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Log.d("loginpage", "signUpWithEmail:onComplete:" + task.isSuccessful());
-
-                                    if (!task.isSuccessful()) {
-                                        Log.w("loginpage", "signUpWithEmail:failed", task.getException());
-                                        Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                    else
-                                    {
-                                        // Create user object
-                                        User newUser = new User(email.getText().toString().trim());
-
-                                        // Get unique database key
-                                        String key = databaseReference.child("users").push().getKey();
-
-                                        // Add the user to database
-                                        databaseReference.child("users").child(Objects.requireNonNull(key)).setValue(newUser);
-
-                                        // In case of success, continue
-                                        Toast.makeText(getApplicationContext(),"User Signed Up ",
-                                                Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-                                        startActivity(intent);
-                                    }
-
-                                } });
-//                    // will open registration activity here
-//                    finish();
-//                    startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                    Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                    startActivity(intent);
                 }
             });
             signIn.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +92,7 @@ public class LoginActivity extends AppCompatActivity{
                                     {
                                         Toast.makeText( getApplicationContext(),"User SIGNED IN ",
                                                 Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                                         startActivity(intent);
                                     }
 

@@ -39,7 +39,6 @@ public class SignUp extends AppCompatActivity {
         mailText = findViewById(R.id.mailText);
         passwordText = findViewById(R.id.passwordText);
         nameSurname = findViewById(R.id.nameSurname);
-        genderButtons = findViewById(R.id.genderButtons);
         man = findViewById(R.id.man);
         woman = findViewById(R.id.woman);
         mAuth = FirebaseAuth.getInstance();
