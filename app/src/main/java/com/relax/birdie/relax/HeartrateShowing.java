@@ -1,6 +1,7 @@
 package com.relax.birdie.relax;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -59,12 +62,34 @@ public class HeartrateShowing extends AppCompatActivity{
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data: dataSnapshot.getChildren()) {
                     userID = data.getKey();
+                    Toast.makeText(getApplicationContext(), "User ID: " + userID, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();;
+            }
+        });
+
+        // Retrieve user preferences from database
+        final List userPreferences = new ArrayList<Double>();
+        dRef.child("ratings").orderByKey().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data: dataSnapshot.getChildren()) {
+                    if (Objects.requireNonNull(data.getKey()).equals(userID)) {
+                        Toast.makeText(getApplicationContext(), "This one is right.", Toast.LENGTH_SHORT).show();
+                        for (int i=0; i<12; i++) {
+                            userPreferences.add(i, data.child(i + ""));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
