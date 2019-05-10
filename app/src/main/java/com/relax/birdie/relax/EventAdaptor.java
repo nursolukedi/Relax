@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class  EventAdaptor extends ArrayAdapter<String>
+public class  EventAdaptor extends ArrayAdapter<Events.Event>
 {
     // meditation adaptor for any list.
     private static class ViewHolder {
@@ -20,9 +20,9 @@ public class  EventAdaptor extends ArrayAdapter<String>
     private final LayoutInflater layoutInflater;
     private final Context context;
     private ViewHolder holder;
-    private final  String[] events;
+    private final Events.Event[] events;
 
-    public EventAdaptor(Context context, String[] events)
+    public EventAdaptor(Context context, Events.Event[] events)
     {
         super(context, 0 , events);
         this.events = events;
@@ -36,7 +36,7 @@ public class  EventAdaptor extends ArrayAdapter<String>
     }
 
     @Override
-    public String getItem(int position)
+    public Events.Event getItem(int position)
     {
         return events[position];
     }
@@ -59,13 +59,13 @@ public class  EventAdaptor extends ArrayAdapter<String>
             holder = (ViewHolder)convertView.getTag();
         }
 
-       String event = events[position];
+       Events.Event event = events[position];
 
         if(event != null)
         {
-           // holder.pictureId.setImageResource(event.getPicture());
-           // String eventText = event.getEventName() + "\n Event type is : " + event.getEventType() + "\n and event date and time is : " + event.getEventDate() + "  - "  + event.getEventTime() +"\n" ;
-            holder.eventText.setText(event);
+            holder.pictureId.setImageResource(event.getPicture());
+            String eventInfo = event.getEventName() + "\n Event type is : " + event.getEventType() + "\n and event date and time is : " + event.getEventDate() + "  - "  + event.getEventTime() +"\n" ;
+            holder.eventText.setText(eventInfo);
             return convertView;
         }
 
