@@ -72,26 +72,26 @@ public class HeartrateShowing extends AppCompatActivity{
             }
         });
 
-        // Retrieve user preferences from database
-        final List userPreferences = new ArrayList<Double>();
-        dRef.child("ratings").orderByKey().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data: dataSnapshot.getChildren()) {
-                    if (Objects.requireNonNull(data.getKey()).equals(userID)) {
-                        Toast.makeText(getApplicationContext(), "This one is right.", Toast.LENGTH_SHORT).show();
-                        for (int i=0; i<12; i++) {
-                            userPreferences.add(i, data.child(i + ""));
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        // Retrieve user preferences from database
+//        final Double[] userPreferences = new Double[12];
+//        dRef.child("ratings").child(userID).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot data: dataSnapshot.getChildren()) {
+//                    String key = data.getKey();
+//                    userPreferences[Integer.parseInt(Objects.requireNonNull(key))] = data.child(key).getValue(Double.class);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//        for (int i=0; i<12; i++) {
+//            Toast.makeText(getApplicationContext(), "Meditation: " + i + ", rating: " + userPreferences[i], Toast.LENGTH_SHORT).show();
+//        }
 
         // list and adaptor and any other list related info
         int validCount = 0 ;
