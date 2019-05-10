@@ -89,20 +89,22 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         }
         else if (v == settings)
        {
-           Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
+           finish();
+           startActivity(new Intent(Dashboard.this, Settings.class));
        }
         else if (v == progress )
         {
-            Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
+            finish();
+            startActivity(new Intent(Dashboard.this, Progress.class));
         }
             else if (v == calendar )
         {
             finish();
             startActivity(new Intent(Dashboard.this, Calendar.class));
-            Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
         }
         else if (v == personal ) {
-           Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
+           finish();
+           startActivity(new Intent(Dashboard.this, Personal.class));
        }
     }
 
