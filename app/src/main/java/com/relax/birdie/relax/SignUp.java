@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class SignUp extends AppCompatActivity {
@@ -30,6 +35,7 @@ public class SignUp extends AppCompatActivity {
     RadioGroup genderButtons;
     RadioButton man, woman;
     private FirebaseAuth mAuth;
+    private DatabaseReference dRef;
     int gender = -1;
     int age = -1;
 
@@ -82,6 +88,9 @@ public class SignUp extends AppCompatActivity {
                 else if (ageText.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Please enter your age.", Toast.LENGTH_SHORT).show();
                 }
+                else if (nameSurname.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Please enter your name.", Toast.LENGTH_SHORT).show();
+                }
                 else {
                     mAuth.createUserWithEmailAndPassword(mailText.getText().toString(), passwordText.getText().toString())
                             .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
@@ -91,6 +100,43 @@ public class SignUp extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d("tag", "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
+                                        dRef = FirebaseDatabase.getInstance().getReference();
+
+                                        // Create the new user that will be added to the database
+                                        User newUser = new User(nameSurname.getText().toString());
+                                        newUser.setEmail(mailText.getText().toString());
+                                        newUser.setGender(gender);
+                                        newUser.setAge(Integer.parseInt(ageText.getText().toString()));
+                                        newUser.setName(nameSurname.getText().toString());
+
+                                        // Initialize all user ratings of meditations to 0.5
+                                        Double[] preferenceValues = new Double[12];
+                                        for (int i=0; i<12; i++)  {
+                                            preferenceValues[i] = 0.5;
+                                        }
+                                        List<Double> preferenceValueList = Arrays.asList(preferenceValues);
+
+
+                                        // Put the new user in database
+                                        String autoID = dRef.child("users").push().getKey();
+                                        dRef.child("users").child(Objects.requireNonNull(autoID)).setValue(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // Write was successful!
+                                                Toast.makeText(getApplicationContext(),"Registration success.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        // Write failed
+                                                        Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+
+                                        // Add the preference values to the database
+                                        dRef.child("ratings").child(autoID).setValue(preferenceValueList);
+
+                                        // After adding the new user, switch back to sign in page
                                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(intent);
                                         finish();

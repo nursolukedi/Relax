@@ -78,8 +78,9 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         }
         else
        if (v == howStressed) { // Check whether the user is stressed
+           Intent intent = new Intent(getApplicationContext(), HowStressed.class);
                finish();
-               startActivity(new Intent(Dashboard.this, HowStressed.class));
+               startActivity(intent);
            }
 
         else if (v == meditations) { // How stressed test activity
