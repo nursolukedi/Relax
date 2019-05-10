@@ -99,7 +99,6 @@ public class SignUp extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d("tag", "createUserWithEmail:success");
-                                        FirebaseUser user = mAuth.getCurrentUser();
                                         dRef = FirebaseDatabase.getInstance().getReference();
 
                                         // Create the new user that will be added to the database

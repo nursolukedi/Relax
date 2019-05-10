@@ -1,6 +1,7 @@
 package com.relax.birdie.relax;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +11,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Objects;
 import java.util.Random;
 
 public class HeartrateShowing extends AppCompatActivity{
 
+    DatabaseReference dRef;
+    String userID = "";
     TextView heartrateInfo, meditationInfoTV;
     ListView listView;
     Button backDashboard;
@@ -42,6 +51,22 @@ public class HeartrateShowing extends AppCompatActivity{
         meditationInfoTV = findViewById(R.id.recommendTV);
         listView = findViewById(R.id.listView);
         backDashboard = findViewById(R.id.back);
+        dRef = FirebaseDatabase.getInstance().getReference();
+
+        // Retrieve the ID of the user so that we can work with preference values
+        dRef.child("users").orderByChild("email").equalTo(SharedEmail.value).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data: dataSnapshot.getChildren()) {
+                    userID = data.getKey();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();;
+            }
+        });
 
         // list and adaptor and any other list related info
         int validCount = 0 ;
