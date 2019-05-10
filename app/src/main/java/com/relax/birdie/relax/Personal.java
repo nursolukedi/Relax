@@ -74,7 +74,7 @@ public class Personal extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 currentUser = (User) dataSnapshot.child("name").getValue();
                 name = name + " " + dataSnapshot.child("surname").getValue();
-                userName.setText(currentUser);
+                //userName.setText(currentUser);
                 //  Glide.with(getActivity()).load(dataSnapshot.child("userPhoto").getValue().toString()).into(userImageView);
 
                 userInformation = " Name Surname :" + name + "\n" ;
