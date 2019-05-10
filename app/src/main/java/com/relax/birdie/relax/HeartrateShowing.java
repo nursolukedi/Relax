@@ -29,7 +29,7 @@ public class HeartrateShowing extends AppCompatActivity{
     String userID = "";
     TextView heartrateInfo, meditationInfoTV;
     ListView listView;
-    Button backDashboard;
+    Button backDashboard, helpful, notHelpful;
     MeditationAdaptor meditationAdaptor;
     Meditation.Meditate[] meditations = new Meditation.Meditate[3];
     Meditation.Meditate[] meditationInstance = Meditation.meditations;
@@ -54,6 +54,8 @@ public class HeartrateShowing extends AppCompatActivity{
         meditationInfoTV = findViewById(R.id.recommendTV);
         listView = findViewById(R.id.listView);
         backDashboard = findViewById(R.id.back);
+        helpful = findViewById(R.id.helpful);
+        notHelpful = findViewById(R.id.nothelpful);
         dRef = FirebaseDatabase.getInstance().getReference();
 
         // Retrieve the ID of the user so that we can work with preference values
@@ -62,13 +64,13 @@ public class HeartrateShowing extends AppCompatActivity{
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data: dataSnapshot.getChildren()) {
                     userID = data.getKey();
-                    Toast.makeText(getApplicationContext(), "User ID: " + userID, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "User ID: " + userID, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();;
+                //Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();;
             }
         });
 
@@ -94,7 +96,7 @@ public class HeartrateShowing extends AppCompatActivity{
 //        }
 
         // list and adaptor and any other list related info
-        int validCount = 0 ;
+        int validCount = 0;
         for(int i = 0 ; i < meditationInstance.length ; i++  )
         {
           if( meditationInstance[i].getMeditationMoodType().equals(message) )
@@ -109,6 +111,12 @@ public class HeartrateShowing extends AppCompatActivity{
         //Toast.makeText(getApplicationContext(), SharedEmail.value, Toast.LENGTH_SHORT).show();
         meditationAdaptor = new MeditationAdaptor(HeartrateShowing.this, meditations);
         listView.setAdapter(meditationAdaptor);
+        if (madeUpHeartrate < 110) {
+            listView.setVisibility(View.GONE);
+            meditationInfoTV.setVisibility(View.GONE);
+            helpful.setVisibility(View.GONE);
+            notHelpful.setVisibility(View.GONE);
+        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -126,6 +134,20 @@ public class HeartrateShowing extends AppCompatActivity{
                     finish();
                     startActivity(new Intent(HeartrateShowing.this, Dashboard.class));
 
+            }
+        });
+
+        helpful.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Thanks for your feedback! It will be used to make our system more effective.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        notHelpful.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Thanks for your feedback! It will be used to make our system more effective.", Toast.LENGTH_SHORT).show();
             }
         });
 
