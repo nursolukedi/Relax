@@ -39,7 +39,7 @@ public class Calendar extends AppCompatActivity {
         dashboard = findViewById(R.id.dashboard);
 
       //  getDataFromCalendarTable(v);
-        eventAdaptor = new EventAdaptor(Calendar.this, events);
+        eventAdaptor = new EventAdaptor(Calendar.this, Events.events);
 
         listViewEvent.setAdapter(eventAdaptor);
 

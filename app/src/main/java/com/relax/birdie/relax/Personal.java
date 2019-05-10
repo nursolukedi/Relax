@@ -46,7 +46,7 @@ public class Personal extends AppCompatActivity {
         settings = findViewById(R.id.settings);
         progress = findViewById(R.id.personalStats);
 
-        getProfile();
+       // getProfile();
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +66,7 @@ public class Personal extends AppCompatActivity {
 
 
     }
-
+/*
     private void getProfile() {
         mDatabase= db.getReference("users/-" + mAuth.getCurrentUser().getUid());
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -90,5 +90,5 @@ public class Personal extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }

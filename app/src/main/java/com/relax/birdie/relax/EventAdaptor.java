@@ -49,8 +49,8 @@ public class  EventAdaptor extends ArrayAdapter<Events.Event>
         {
             convertView = layoutInflater.inflate(R.layout.event_list_view,null);
             holder = new ViewHolder();
-            holder.eventText = (TextView) convertView.findViewById(R.id.eventComingUp);
-            holder.pictureId = (ImageView) convertView.findViewById(R.id.pictureId);
+            holder.eventText = (TextView) convertView.findViewById(R.id.eventText);
+            holder.pictureId = (ImageView) convertView.findViewById(R.id.eventPic);
 
             convertView.setTag( holder);
         }
@@ -63,7 +63,7 @@ public class  EventAdaptor extends ArrayAdapter<Events.Event>
 
         if(event != null)
         {
-            holder.pictureId.setImageResource(event.getPicture());
+            holder.pictureId.setImageResource(event.getPictureId());
             String eventInfo = event.getEventName() + "\n Event type is : " + event.getEventType() + "\n and event date and time is : " + event.getEventDate() + "  - "  + event.getEventTime() +"\n" ;
             holder.eventText.setText(eventInfo);
             return convertView;

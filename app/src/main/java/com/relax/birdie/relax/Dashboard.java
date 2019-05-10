@@ -25,7 +25,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private ImageButton personal;
     private ImageButton calendar;
 
-    private Button signOut;
+    private ImageView signOut;
     private ImageView calendarImage;
     private ImageView personalImage;
     private ImageView settingsImage;
@@ -49,6 +49,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         personal = findViewById(R.id.personalButton);
         progress = findViewById(R.id.progressButton);
         calendar = findViewById(R.id.calendarButton);
+        signOut = findViewById(R.id.signOut);
 
         howStressedImage = findViewById(R.id.howStressedTV);
         meditationsImage = findViewById(R.id.meditationsTV);
@@ -65,6 +66,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         progress.setOnClickListener(this);
         calendar.setOnClickListener(this);
         personal.setOnClickListener(this);
+        signOut.setOnClickListener(this);
 
 
         // Initialize a mock user
@@ -72,38 +74,34 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     }
     public void onClick(View v) {
         if (v == signOut) { // Sign out
-           firebaseAuth.signOut();
+           //firebaseAuth.signOut();
             finish();
             startActivity(new Intent(Dashboard.this, LoginActivity.class));
+            Toast.makeText(Dashboard.this, "User signed out", Toast.LENGTH_SHORT).show();
+
         }
         else
        if (v == howStressed) { // Check whether the user is stressed
            Intent intent = new Intent(getApplicationContext(), HowStressed.class);
-               finish();
                startActivity(intent);
            }
 
         else if (v == meditations) { // How stressed test activity
-            finish();
             startActivity(new Intent(Dashboard.this, Meditations.class));
         }
         else if (v == settings)
        {
-           finish();
            startActivity(new Intent(Dashboard.this, Settings.class));
        }
         else if (v == progress )
         {
-            finish();
             startActivity(new Intent(Dashboard.this, Progress.class));
         }
             else if (v == calendar )
         {
-            finish();
             startActivity(new Intent(Dashboard.this, Calendar.class));
         }
         else if (v == personal ) {
-           finish();
            startActivity(new Intent(Dashboard.this, Personal.class));
        }
     }
