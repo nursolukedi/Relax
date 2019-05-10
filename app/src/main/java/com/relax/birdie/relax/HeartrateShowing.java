@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.textclassifier.TextClassification;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
 import java.util.Random;
 
-import com.relax.birdie.relax.MeditationAdaptor;
 public class HeartrateShowing extends AppCompatActivity{
 
     TextView heartrateInfo, meditationInfoTV;
@@ -32,7 +31,7 @@ public class HeartrateShowing extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heartrate_showing);
         Bundle bundle = getIntent().getExtras();
-        String message = bundle.getString("mood");
+        String message = Objects.requireNonNull(bundle).getString("mood");
 
 
         //initalization
@@ -57,7 +56,7 @@ public class HeartrateShowing extends AppCompatActivity{
                 validCount ++;}
           }
         }
-
+        //Toast.makeText(getApplicationContext(), SharedEmail.value, Toast.LENGTH_SHORT).show();
         meditationAdaptor = new MeditationAdaptor(HeartrateShowing.this, meditations);
         listView.setAdapter(meditationAdaptor);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
