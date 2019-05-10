@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -48,7 +49,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Calendar"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+        <intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".Personal"
             android:theme="@style/AppTheme" />

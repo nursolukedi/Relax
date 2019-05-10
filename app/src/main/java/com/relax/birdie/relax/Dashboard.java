@@ -96,6 +96,8 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         }
             else if (v == calendar )
         {
+            finish();
+            startActivity(new Intent(Dashboard.this, Calendar.class));
             Toast.makeText(Dashboard.this, "This section is under construction", Toast.LENGTH_LONG).show();
         }
         else if (v == personal ) {
