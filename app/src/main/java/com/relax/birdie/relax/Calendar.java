@@ -25,7 +25,7 @@ public class Calendar extends AppCompatActivity {
     TextView calendarTv;
     ListView listViewEvent;
     Button dashboard;
-    String[] events;
+    Events.Event[] events;
     EventAdaptor eventAdaptor;
     //View v = (View) R.layout.activity_calendar;
     private static final int MY_CAL_REQ = 1;
@@ -37,8 +37,6 @@ public class Calendar extends AppCompatActivity {
         calendarTv = findViewById(R.id.calendarTv);
         listViewEvent = findViewById(R.id.listViewEvents);
         dashboard = findViewById(R.id.dashboard);
-
-        events = new String[15];
 
       //  getDataFromCalendarTable(v);
         eventAdaptor = new EventAdaptor(Calendar.this, events);
@@ -55,7 +53,8 @@ public class Calendar extends AppCompatActivity {
 
 
     }
-    public void getDataFromCalendarTable(View v) {
+  /* commented for time purposes
+   public void getDataFromCalendarTable(View v) {
         Cursor cur = null;
         ContentResolver cr = getContentResolver();
 
@@ -85,11 +84,12 @@ public class Calendar extends AppCompatActivity {
             String displayName = cur.getString(cur.getColumnIndex(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME));
             String accountName = cur.getString(cur.getColumnIndex(CalendarContract.Calendars.ACCOUNT_NAME));
 
-           events[cursorCount] = displayName;
+           //events[cursorCount] = displayName;
            cursorCount++;
 
         }
+    }*/
 
-    }
+
 }
 

@@ -33,6 +33,7 @@ public class Meditations extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),MeditationInfo.class);
                 Meditation.Meditate meditates = (Meditation.Meditate) listViewMeditations.getItemAtPosition(position);
                 intent.putExtra("meditationId",meditates.getMeditationName());
+                finish();
                 startActivity(intent);
             }
         });

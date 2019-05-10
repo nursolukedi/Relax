@@ -29,13 +29,14 @@ public class Personal extends AppCompatActivity {
     private String name= "";
     private String userInformation = "";
     private Button settings, progress;
+    private User currentUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
-
+        db = FirebaseDatabase.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mAuth = FirebaseAuth.getInstance();
@@ -67,20 +68,20 @@ public class Personal extends AppCompatActivity {
     }
 
     private void getProfile() {
-        mDatabase= db.getReference("users/"+mAuth.getCurrentUser().getUid());
+        mDatabase= db.getReference("users/-" + mAuth.getCurrentUser().getUid());
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                name = dataSnapshot.child("name").getValue(String.class);
-                name = name + " " + dataSnapshot.child("surname").getValue(String.class);
-                userName.setText(name);
+                currentUser = (User) dataSnapshot.child("name").getValue();
+                name = name + " " + dataSnapshot.child("surname").getValue();
+                userName.setText(currentUser);
                 //  Glide.with(getActivity()).load(dataSnapshot.child("userPhoto").getValue().toString()).into(userImageView);
 
                 userInformation = " Name Surname :" + name + "\n" ;
-                userInformation = userInformation + " Email : "+ dataSnapshot.child("email").getValue(String.class) + "\n" ;
-                userInformation = userInformation + " Age : "+ dataSnapshot.child("age" ).getValue(String.class)+ "\n";
-                userInformation = userInformation + " Gender : "+ dataSnapshot.child("gender").getValue(String.class)+ "\n";
-                userInformation = userInformation + " Fitness Level :"+ dataSnapshot.child("fitnessLevel").getValue(String.class);
+                userInformation = userInformation + " Email : "+ dataSnapshot.child("email").getValue() + "\n" ;
+                userInformation = userInformation + " Age : "+ dataSnapshot.child("age" ).getValue()+ "\n";
+                userInformation = userInformation + " Gender : "+ dataSnapshot.child("gender").getValue()+ "\n";
+                userInformation = userInformation + " Fitness Level :"+ dataSnapshot.child("fitnessLevel").getValue();
                 userInfo.setText(userInformation);
             }
 
