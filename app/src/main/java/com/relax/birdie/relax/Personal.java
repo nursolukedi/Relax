@@ -26,9 +26,9 @@ public class Personal extends AppCompatActivity {
 
     private ImageView userPhoto;
     private TextView userName, userInfo;
-    private String name= "";
+    private String name= "Ahmad Zafar Khan";
     private String userInformation = "";
-    private Button settings, progress;
+    private Button dashboard, progress;
     private User currentUser;
 
 
@@ -43,16 +43,20 @@ public class Personal extends AppCompatActivity {
         userInfo = findViewById(R.id.userInfo);
         userName = findViewById(R.id.userName);
         userPhoto = findViewById(R.id.userPhoto);
-        settings = findViewById(R.id.settings);
+        dashboard = findViewById(R.id.dashboardButton1);
         progress = findViewById(R.id.personalStats);
 
-       // getProfile();
+        userInformation = " Name Surname :" + name + "\n" ;
+        userInformation = userInformation + " Email : ahmad.zafar@birdie.com" + "\n" ;
+        userInformation = userInformation + " Age : 22 "+ "\n";
+        userInformation = userInformation + " Gender : Male "+ "\n";
+        userInformation = userInformation + " Fitness Level : 3 ";
 
-        settings.setOnClickListener(new View.OnClickListener() {
+        dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(Personal.this, Settings.class));
+                startActivity(new Intent(Personal.this, Dashboard.class));
             }
         });
 
@@ -63,6 +67,8 @@ public class Personal extends AppCompatActivity {
                 startActivity(new Intent(Personal.this, Progress.class));
             }
         });
+        userName.setText(name);
+        userInfo.setText(userInformation);
 
 
     }

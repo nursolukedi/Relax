@@ -49,6 +49,8 @@ public class RecieveHeartbeat extends AppCompatActivity {
     private int progressStatus = 0;
     private boolean suspended = false;
     private boolean stopped = false;
+    private Handler handler = new Handler();
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +62,19 @@ public class RecieveHeartbeat extends AppCompatActivity {
         heartBeat.setText("You said your mood is : " + message);
         nextButton =  findViewById(R.id.nextButton);
         loading = findViewById(R.id.progressBar);
-        nextButton.setVisibility(INVISIBLE);
+        nextButton.setVisibility(View.INVISIBLE);
+        nextButton.postDelayed(new Runnable() {
+            public void run() {
+                nextButton.setVisibility(View.VISIBLE);
+            }
+        }, 7000);
+        textView = findViewById(R.id.textView);
+        textView.setText("Receving Bluetooth Information");
 
         loading.setMax(100);
         loading.setIndeterminate(false);
 
         initValues();
-
-
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +96,5 @@ public class RecieveHeartbeat extends AppCompatActivity {
         loading.setEnabled(true);
         suspended=false;
     }
-
-
 
 }
