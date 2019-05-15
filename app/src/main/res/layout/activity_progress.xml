@@ -6,4 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".Progress">
 
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="286dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="144dp"
+        android:editable="false"
+        android:ems="10"
+        android:background="@android:color/transparent"
+        android:inputType="textPersonName"
+        android:text="Time: 10/5/19 18:33  Stress: High"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="286dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="208dp"
+        android:ems="10"
+        android:background="@android:color/transparent"
+        android:inputType="textPersonName"
+        android:text="Time: 10/5/19 18:16  Stress: High"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="286dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="256dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Time: 09/5/19 09:04  Stress: Low"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="286dp"
+        android:layout_height="51dp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="84dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Time: 14/5/19 21:18  Stress: Low"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="214dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToDashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Your History"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="286dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:background="@android:color/transparent"
+        android:inputType="textPersonName"
+        android:text="Time: 15/5/19 11:14  Stress: High"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <Button
+        android:id="@+id/buttonToDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="49dp"
+        android:text="DASHBOARD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 </android.support.constraint.ConstraintLayout>
