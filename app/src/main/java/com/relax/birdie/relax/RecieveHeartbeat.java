@@ -2,10 +2,12 @@ package com.relax.birdie.relax;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.InputStream;
@@ -35,19 +37,18 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/*
-* We will recieve heartbeat data here and then show it on activity as we receive it.
-* We will store first 10 sec*6 's value and last 10 sec*6 value.
-* Then we will take their difference and then show string accordingly.
-* Pass string to show heartbeat data section.
-*
-* */
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 
 public class RecieveHeartbeat extends AppCompatActivity {
     private TextView heartBeat ;
     private Button nextButton, debug;
     private String message;
-
+    private ProgressBar loading;
+    private int progressStatus = 0;
+    private boolean suspended = false;
+    private boolean stopped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,15 @@ public class RecieveHeartbeat extends AppCompatActivity {
         heartBeat = findViewById(R.id.heartBeat);
         heartBeat.setText("You said your mood is : " + message);
         nextButton =  findViewById(R.id.nextButton);
-        debug = findViewById(R.id.debugButton);
+        loading = findViewById(R.id.progressBar);
+        nextButton.setVisibility(INVISIBLE);
+
+        loading.setMax(100);
+        loading.setIndeterminate(false);
+
+        initValues();
+
+
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,17 +80,16 @@ public class RecieveHeartbeat extends AppCompatActivity {
             }
         });
 
-        debug.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RecieveHeartbeat.this, NewBluetoothControl.class);
-                startActivity(intent);
-
-            }
-        });
-
 
 }
+
+    private void initValues() { //Başlangıç değerlerini set ediyoruz.
+        progressStatus=0;
+        loading.setProgress(progressStatus);
+        loading.setEnabled(true);
+        suspended=false;
+    }
+
 
 
 }

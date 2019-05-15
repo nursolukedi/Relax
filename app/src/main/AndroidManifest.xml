@@ -12,7 +12,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -50,9 +49,9 @@
         <activity
             android:name=".Calendar"
             android:theme="@style/AppTheme">
-        <intent-filter>
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Personal"
@@ -78,8 +77,6 @@
         <activity
             android:name=".RecieveHeartbeat"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ReceiveHeartbeatBluetooth" />
-        <activity android:name=".NewBluetoothControl"></activity>
     </application>
 
 </manifest>
