@@ -2,6 +2,7 @@ package com.relax.birdie.relax;
 
 import android.content.Intent;
 import android.media.Image;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +24,14 @@ public class Personal extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseDatabase db;
     private FirebaseAuth mAuth;
+    FirebaseUser user;
 
 
     private ImageView userPhoto;
     private TextView userName, userInfo;
-    private String name= "Ahmad Zafar Khan";
+    private String name= " ";
     private String userInformation = "";
     private Button dashboard, progress;
-    private User currentUser;
 
 
     @Override
@@ -38,8 +40,8 @@ public class Personal extends AppCompatActivity {
         setContentView(R.layout.activity_personal);
         db = FirebaseDatabase.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
         mAuth = FirebaseAuth.getInstance();
+
         userInfo = findViewById(R.id.userInfo);
         userName = findViewById(R.id.userName);
         userPhoto = findViewById(R.id.userPhoto);
@@ -47,7 +49,7 @@ public class Personal extends AppCompatActivity {
         progress = findViewById(R.id.personalStats);
 
         userInformation = " Name Surname :" + name + "\n" ;
-        userInformation = userInformation + " Email : ahmad.zafar@birdie.com" + "\n" ;
+        userInformation = userInformation + " Email : OLMADU " + "\n" ;
         userInformation = userInformation + " Age : 22 "+ "\n";
         userInformation = userInformation + " Gender : Male "+ "\n";
         userInformation = userInformation + " Fitness Level : 3 ";
@@ -60,6 +62,9 @@ public class Personal extends AppCompatActivity {
             }
         });
 
+        userName.setText(name);
+        userInfo.setText(userInformation);
+        getProfile();
         progress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,27 +72,30 @@ public class Personal extends AppCompatActivity {
                 startActivity(new Intent(Personal.this, Progress.class));
             }
         });
-        userName.setText(name);
-        userInfo.setText(userInformation);
+
 
 
     }
-/*
+
     private void getProfile() {
-        mDatabase= db.getReference("users/-" + mAuth.getCurrentUser().getUid());
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                currentUser = (User) dataSnapshot.child("name").getValue();
-                name = name + " " + dataSnapshot.child("surname").getValue();
+
+                FirebaseUser user =FirebaseAuth.getInstance().getCurrentUser();
+                String userid = user.getUid();
+                mDatabase = mDatabase.child("users").child(userid);
+
+                name = name + " " + dataSnapshot.child("users").child(userid).child("name").getValue();
+                name = name + " " + dataSnapshot.child("users").child(userid).child("surname").getValue();
                 //userName.setText(currentUser);
                 //  Glide.with(getActivity()).load(dataSnapshot.child("userPhoto").getValue().toString()).into(userImageView);
 
                 userInformation = " Name Surname :" + name + "\n" ;
-                userInformation = userInformation + " Email : "+ dataSnapshot.child("email").getValue() + "\n" ;
-                userInformation = userInformation + " Age : "+ dataSnapshot.child("age" ).getValue()+ "\n";
-                userInformation = userInformation + " Gender : "+ dataSnapshot.child("gender").getValue()+ "\n";
-                userInformation = userInformation + " Fitness Level :"+ dataSnapshot.child("fitnessLevel").getValue();
+                userInformation = userInformation + " Email : "+ dataSnapshot.child("users").child(userid).child("email").getValue() + "\n" ;
+                userInformation = userInformation + " Age : "+ dataSnapshot.child("users").child(userid).child("age" ).getValue()+ "\n";
+                userInformation = userInformation + " Gender : "+ dataSnapshot.child("users").child(userid).child("gender").getValue()+ "\n";
+                userInformation = userInformation + " Fitness Level :"+ dataSnapshot.child("users").child(userid).child("fitnessLevel").getValue();
                 userInfo.setText(userInformation);
             }
 
@@ -96,5 +104,5 @@ public class Personal extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 }

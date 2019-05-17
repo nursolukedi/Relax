@@ -20,8 +20,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,12 +38,11 @@ public class SignUp extends AppCompatActivity {
     RadioGroup genderButtons;
     RadioButton man, woman;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
     private DatabaseReference dRef;
     int gender = -1;
     int age = -1;
-
-
-
+    User newUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +55,8 @@ public class SignUp extends AppCompatActivity {
         man = findViewById(R.id.man);
         woman = findViewById(R.id.woman);
         mAuth = FirebaseAuth.getInstance();
-        //genderButtons.set
-        //TODO : set database tables
-
+        database = FirebaseDatabase.getInstance();
+        dRef = database.getReference();
         // Choose gender when respective buttons are pressed
         man.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,14 +64,12 @@ public class SignUp extends AppCompatActivity {
                 gender = 1;
             }
         });
-
         woman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gender = 2;
             }
         });
-
         // Sign up
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,45 +101,16 @@ public class SignUp extends AppCompatActivity {
                                         dRef = FirebaseDatabase.getInstance().getReference();
 
                                         // Create the new user that will be added to the database
-                                        User newUser = new User(nameSurname.getText().toString());
+                                        newUser = new User(nameSurname.getText().toString());
+
                                         newUser.setEmail(mailText.getText().toString());
                                         newUser.setGender(gender);
                                         newUser.setAge(Integer.parseInt(ageText.getText().toString()));
                                         newUser.setName(nameSurname.getText().toString());
-
-                                        // Initialize all user ratings of meditations to 0.5
-                                        Double[] preferenceValues = new Double[12];
-                                        for (int i=0; i<12; i++)  {
-                                            preferenceValues[i] = 0.5;
-                                        }
-                                        List<Double> preferenceValueList = Arrays.asList(preferenceValues);
-
-
-                                        // Put the new user in database
-                                        String autoID = dRef.child("users").push().getKey();
-                                        dRef.child("users").child(Objects.requireNonNull(autoID)).setValue(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                // Write was successful!
-                                                Toast.makeText(getApplicationContext(),"Registration success.", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        // Write failed
-                                                        Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-
-                                        // Add the preference values to the database
-                                        dRef.child("ratings").child(autoID).setValue(preferenceValueList);
-
-                                        // After adding the new user, switch back to sign in page
+                                        writeToDb(newUser);
                                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(intent);
                                         finish();
-                                        // DatabaseReference myRef = database.getReference(user.getUid());
-                                        // myRef.setValue(uobj);
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w( "log" ,"createUserWithEmail:failure", task.getException() );
@@ -152,6 +122,26 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /*
+    *
+    *  // After adding the new user, switch back to sign in page
+                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+    *
+    *
+    *
+    * */
+
+    public void writeToDb(User user){
+
+        FirebaseUser newUser =FirebaseAuth.getInstance().getCurrentUser();
+        String userid = newUser.getUid();
+        dRef.child("users").setValue(userid);
+        dRef.child("users").child(userid).setValue(user);
+
     }
     }
 
