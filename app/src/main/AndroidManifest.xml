@@ -66,9 +66,6 @@
             android:name=".HeartrateShowing"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".StressShowing"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".MeditationDoing"
             android:theme="@style/AppTheme" />
         <activity
