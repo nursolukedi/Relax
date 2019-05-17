@@ -111,12 +111,7 @@ public class HeartrateShowing extends AppCompatActivity{
         //Toast.makeText(getApplicationContext(), SharedEmail.value, Toast.LENGTH_SHORT).show();
         meditationAdaptor = new MeditationAdaptor(HeartrateShowing.this, meditations);
         listView.setAdapter(meditationAdaptor);
-        if (madeUpHeartrate < 110) {
-            listView.setVisibility(View.GONE);
-            meditationInfoTV.setVisibility(View.GONE);
-            helpful.setVisibility(View.GONE);
-            notHelpful.setVisibility(View.GONE);
-        }
+        
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

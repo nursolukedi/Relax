@@ -95,7 +95,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
        }
         else if (v == progress )
         {
-            //startActivity(new Intent(Dashboard.this, Progress.class));
+            startActivity(new Intent(Dashboard.this, Progress.class));
         }
             else if (v == calendar )
         {

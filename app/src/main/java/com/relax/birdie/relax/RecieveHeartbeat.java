@@ -67,7 +67,7 @@ public class RecieveHeartbeat extends AppCompatActivity {
             public void run() {
                 nextButton.setVisibility(View.VISIBLE);
             }
-        }, 7000);
+        }, 10000);
         textView = findViewById(R.id.textView);
         textView.setText("Receving Bluetooth Information");
 
